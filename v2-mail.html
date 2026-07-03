@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mail — Inbox (1 unread)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+    ::-webkit-scrollbar { width: 9px; height: 9px; }
+    ::-webkit-scrollbar-thumb { background: rgba(0,0,0,.18); border-radius: 9px; }
+  </style>
+</head>
+<body class="bg-[#c9ccd1] h-screen overflow-hidden">
+
+  <!-- ===================== MAIL WINDOW ===================== -->
+  <div class="h-screen flex flex-col bg-white overflow-hidden">
+
+    <!-- title bar -->
+    <div class="relative h-[52px] shrink-0 flex items-center px-5 border-b border-black/10"
+         style="background:linear-gradient(180deg,#EDEDEF,#DFDFE2)">
+      <div class="flex items-center gap-2">
+        <span class="w-[13px] h-[13px] rounded-full bg-[#FF5F57]"></span>
+        <span class="w-[13px] h-[13px] rounded-full bg-[#FEBC2E]"></span>
+        <span class="w-[13px] h-[13px] rounded-full bg-[#28C840]"></span>
+      </div>
+      <div class="absolute inset-x-0 text-center text-[13px] font-medium text-[#6b6b6e] pointer-events-none">Mail — Inbox (1 unread)</div>
+    </div>
+
+    <!-- 3-column body -->
+    <div class="flex-1 flex min-h-0">
+
+      <!-- ========== SIDEBAR ========== -->
+      <aside class="w-[280px] shrink-0 bg-[#F6F7F9] border-r border-black/10 flex flex-col">
+        <div class="p-4">
+          <button class="w-full flex items-center justify-center gap-2 bg-[#0E1730] text-white text-[15px] font-semibold rounded-xl py-3">
+            <span class="text-[18px] leading-none">＋</span> Compose
+          </button>
+        </div>
+        <nav class="px-3 flex flex-col gap-0.5 text-[15px]">
+          <a class="flex items-center justify-between px-3 h-11 rounded-lg bg-[#DFF6EC] text-[#0E1730] font-semibold">
+            <span class="flex items-center gap-3"><span>✉️</span> Inbox</span><span class="text-[13px]">1</span>
+          </a>
+          <a class="flex items-center gap-3 px-3 h-11 rounded-lg text-[#4a4f5a] hover:bg-black/5"><span>☆</span> Starred</a>
+          <a class="flex items-center gap-3 px-3 h-11 rounded-lg text-[#4a4f5a] hover:bg-black/5"><span>➤</span> Sent</a>
+          <a class="flex items-center gap-3 px-3 h-11 rounded-lg text-[#4a4f5a] hover:bg-black/5"><span>🗒️</span> Drafts</a>
+          <a class="flex items-center justify-between px-3 h-11 rounded-lg text-[#4a4f5a] hover:bg-black/5">
+            <span class="flex items-center gap-3"><span>🏷️</span> Promotions</span><span class="text-[13px] text-[#9aa0ab]">9</span>
+          </a>
+          <a class="flex items-center gap-3 px-3 h-11 rounded-lg text-[#4a4f5a] hover:bg-black/5"><span>🗑️</span> Trash</a>
+        </nav>
+      </aside>
+
+      <!-- ========== MESSAGE LIST ========== -->
+      <section class="w-[360px] shrink-0 bg-white border-r border-black/10 flex flex-col min-h-0">
+        <div class="px-5 h-[68px] shrink-0 flex items-center justify-between border-b border-black/10">
+          <span class="text-[20px] font-bold text-[#111]">Inbox</span>
+          <span class="text-[13px] text-[#9aa0ab]">1 unread</span>
+        </div>
+        <div class="flex-1 overflow-y-auto">
+
+          <!-- selected -->
+          <div class="relative px-5 py-4 border-b border-black/[.06] bg-[#F3FBF8] cursor-pointer">
+            <span class="absolute left-0 top-0 bottom-0 w-1 bg-[#2fd0a6]"></span>
+            <div class="flex items-center justify-between">
+              <span class="flex items-center gap-2 text-[15px] font-bold text-[#111]"><span class="w-2 h-2 rounded-full bg-[#2fd0a6]"></span>ZippyPay</span>
+              <span class="text-[12px] text-[#9aa0ab]">17:20</span>
+            </div>
+            <div class="mt-1 text-[14px] font-semibold text-[#1c2230]">Who will be the 2026 World Cup champion? 🏆</div>
+            <div class="mt-0.5 text-[13px] text-[#9aa0ab] truncate">Pick your winner and take part in our lottery! Vote …</div>
+          </div>
+
+          <!-- others -->
+          <div class="px-5 py-4 border-b border-black/[.06] cursor-pointer hover:bg-black/[.02]">
+            <div class="flex items-center justify-between"><span class="text-[15px] font-bold text-[#111]">Notion</span><span class="text-[12px] text-[#9aa0ab]">16:04</span></div>
+            <div class="mt-1 text-[14px] font-semibold text-[#1c2230]">Your weekly workspace digest</div>
+            <div class="mt-0.5 text-[13px] text-[#9aa0ab] truncate">Here's what happened across your teamspaces thi…</div>
+          </div>
+          <div class="px-5 py-4 border-b border-black/[.06] cursor-pointer hover:bg-black/[.02]">
+            <div class="flex items-center justify-between"><span class="text-[15px] font-bold text-[#111]">GitHub</span><span class="text-[12px] text-[#9aa0ab]">14:37</span></div>
+            <div class="mt-1 text-[14px] font-semibold text-[#1c2230]">[zippypay/web] 3 new pull requests</div>
+            <div class="mt-0.5 text-[13px] text-[#9aa0ab] truncate">A summary of pull requests awaiting your review…</div>
+          </div>
+          <div class="px-5 py-4 border-b border-black/[.06] cursor-pointer hover:bg-black/[.02]">
+            <div class="flex items-center justify-between"><span class="text-[15px] font-bold text-[#111]">Figma</span><span class="text-[12px] text-[#9aa0ab]">11:12</span></div>
+            <div class="mt-1 text-[14px] font-semibold text-[#1c2230]">Anna commented on "Newsletter v4"</div>
+            <div class="mt-0.5 text-[13px] text-[#9aa0ab] truncate">"Love the new summary card — ship it" — reply to…</div>
+          </div>
+          <div class="px-5 py-4 border-b border-black/[.06] cursor-pointer hover:bg-black/[.02]">
+            <div class="flex items-center justify-between"><span class="text-[15px] font-bold text-[#111]">Amazon</span><span class="text-[12px] text-[#9aa0ab]">Yesterday</span></div>
+            <div class="mt-1 text-[14px] font-semibold text-[#1c2230]">Your order has shipped</div>
+            <div class="mt-0.5 text-[13px] text-[#9aa0ab] truncate">Arriving tomorrow by 9 PM. Track your package…</div>
+          </div>
+          <div class="px-5 py-4 border-b border-black/[.06] cursor-pointer hover:bg-black/[.02]">
+            <div class="flex items-center justify-between"><span class="text-[15px] font-bold text-[#111]">Stripe</span><span class="text-[12px] text-[#9aa0ab]">Yesterday</span></div>
+            <div class="mt-1 text-[14px] font-semibold text-[#1c2230]">Payout of $4,120.00 is on its way</div>
+            <div class="mt-0.5 text-[13px] text-[#9aa0ab] truncate">Your funds are being transferred to your bank…</div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ========== READING PANE ========== -->
+      <main class="flex-1 flex flex-col min-w-0 bg-white">
+        <!-- subject bar -->
+        <div class="px-7 h-[74px] shrink-0 flex items-center justify-between border-b border-black/10">
+          <h1 class="text-[24px] font-bold text-[#111] truncate">Who will be the 2026 World Cup champion? 🏆</h1>
+          <span class="text-[22px] text-[#c3c7cf]">☆</span>
+        </div>
+        <!-- sender row -->
+        <div class="px-7 py-4 shrink-0 flex items-center gap-3 border-b border-black/10">
+          <div class="w-11 h-11 rounded-full bg-[#0E1730] text-white flex items-center justify-center text-[14px] font-bold">ZP</div>
+          <div class="min-w-0">
+            <div class="text-[15px] leading-tight"><span class="font-bold text-[#111]">ZippyPay</span> <span class="text-[#9aa0ab]">&lt;promo@zippypay.com&gt;</span></div>
+            <div class="text-[13px] text-[#9aa0ab]">to me ▾</div>
+          </div>
+          <div class="ml-auto flex items-center gap-4 text-[#b3b8c1]">
+            <span class="text-[13px] text-[#9aa0ab] whitespace-nowrap">17:20 (0 minutes ago)</span>
+            <span class="text-[18px]">☆</span>
+            <span class="text-[18px]">↩</span>
+            <span class="text-[18px]">⋯</span>
+          </div>
+        </div>
+        <!-- email body (same email as V1, via iframe) -->
+        <iframe src="v1-email.html" title="Email preview" class="flex-1 w-full border-0"></iframe>
+      </main>
+
+    </div>
+  </div>
+</body>
+</html>
