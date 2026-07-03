@@ -11,6 +11,11 @@
   <style>
     body { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
     .teko { font-family: "Teko", sans-serif; }
+    .team-btn { transition: background-color .15s ease, border-color .15s ease; cursor: pointer; }
+    .team-btn:hover { background-color:#1C2B54; border-color:#4FE3C1; }
+    .opt-trigger { transition: border-color .15s ease, background-color .15s ease; cursor: pointer; }
+    .opt-trigger:hover { border-color:#4FE3C1; background-color:rgba(79,227,193,0.08); }
+    #suggest-vote:hover { background-color:#38D8B3; }
   </style>
 </head>
 <body class="bg-[#EEECE7] flex justify-center py-9 px-3">
@@ -57,31 +62,50 @@
     <!-- TEAM PICKER -->
     <div class="px-6 flex flex-col gap-5">
       <div class="rounded-[22px] px-7 pt-8 pb-7" style="background:linear-gradient(180deg,#0E1730 0%,#16234A 100%)">
-        <p class="font-bold text-[22px] leading-7 text-white text-center">Pick your favorite team here!</p>
 
-        <div class="pt-6 flex flex-col gap-2">
-          <a href="#" class="flex items-center gap-3.5 rounded-[14px] border border-[#2E3D6B] px-5 py-[15px] bg-[#303753]">
-            <img src="assets/ar.png" class="w-[26px] h-5 rounded object-cover"><span class="font-bold text-[16px] text-white">Argentina</span>
-          </a>
-          <a href="#" class="flex items-center gap-3.5 rounded-[14px] border border-[#2E3D6B] px-5 py-[15px] bg-[#131F3E]">
-            <img src="assets/eng.png" class="w-[26px] h-5 rounded object-cover"><span class="font-bold text-[16px] text-white">England</span>
-          </a>
-          <a href="#" class="flex items-center gap-3.5 rounded-[14px] border border-[#2E3D6B] px-5 py-[15px] bg-[#131F3E]">
-            <img src="assets/mx.png" class="w-[26px] h-5 rounded object-cover"><span class="font-bold text-[16px] text-white">Mexico</span>
-          </a>
-          <a href="#" class="flex items-center gap-3.5 rounded-[14px] border border-[#2E3D6B] px-5 py-[15px] bg-[#131F3E]">
-            <img src="assets/fr.png" class="w-[26px] h-5 rounded object-cover"><span class="font-bold text-[16px] text-white">France</span>
-          </a>
-          <a href="#" class="flex items-center gap-3.5 rounded-[14px] border border-[#2E3D6B] px-5 py-[15px] bg-[#131F3E]">
-            <img src="assets/pt.png" class="w-[26px] h-5 rounded object-cover"><span class="font-bold text-[16px] text-white">Portugal</span>
-          </a>
+        <!-- picker -->
+        <div id="picker">
+          <p class="font-bold text-[22px] leading-7 text-white text-center">Pick your favorite team here!</p>
+
+          <div class="pt-6 flex flex-col gap-2">
+            <button type="button" data-team="Argentina" class="team-btn flex items-center gap-3.5 w-full text-left rounded-[14px] border border-[#2E3D6B] px-5 py-[15px] bg-[#131F3E]">
+              <img src="assets/ar.png" class="w-[26px] h-5 rounded object-cover"><span class="font-bold text-[16px] text-white">Argentina</span>
+            </button>
+            <button type="button" data-team="England" class="team-btn flex items-center gap-3.5 w-full text-left rounded-[14px] border border-[#2E3D6B] px-5 py-[15px] bg-[#131F3E]">
+              <img src="assets/eng.png" class="w-[26px] h-5 rounded object-cover"><span class="font-bold text-[16px] text-white">England</span>
+            </button>
+            <button type="button" data-team="Mexico" class="team-btn flex items-center gap-3.5 w-full text-left rounded-[14px] border border-[#2E3D6B] px-5 py-[15px] bg-[#131F3E]">
+              <img src="assets/mx.png" class="w-[26px] h-5 rounded object-cover"><span class="font-bold text-[16px] text-white">Mexico</span>
+            </button>
+            <button type="button" data-team="France" class="team-btn flex items-center gap-3.5 w-full text-left rounded-[14px] border border-[#2E3D6B] px-5 py-[15px] bg-[#131F3E]">
+              <img src="assets/fr.png" class="w-[26px] h-5 rounded object-cover"><span class="font-bold text-[16px] text-white">France</span>
+            </button>
+            <button type="button" data-team="Portugal" class="team-btn flex items-center gap-3.5 w-full text-left rounded-[14px] border border-[#2E3D6B] px-5 py-[15px] bg-[#131F3E]">
+              <img src="assets/pt.png" class="w-[26px] h-5 rounded object-cover"><span class="font-bold text-[16px] text-white">Portugal</span>
+            </button>
+          </div>
+
+          <div class="pt-4">
+            <button type="button" id="suggest-trigger" class="opt-trigger block w-full rounded-[14px] border border-dashed px-5 py-[15px] text-center" style="border-color:rgba(79,227,193,0.7)">
+              <span class="font-bold text-[16px] text-[#4FE3C1]">Suggest another team</span>
+            </button>
+            <div id="suggest-form" class="hidden">
+              <div class="flex items-center gap-2 rounded-[14px] border border-dashed pl-3 pr-2 py-2" style="border-color:rgba(79,227,193,0.7)">
+                <input id="suggest-input" type="text" placeholder="Type the team you believe will win…" class="flex-1 min-w-0 bg-transparent outline-none text-white font-bold text-[16px] px-2 py-2 placeholder:text-[#8FA0C7] placeholder:font-normal">
+                <button type="button" id="suggest-vote" class="shrink-0 rounded-[10px] bg-[#4FE3C1] text-[#06231B] font-bold text-[14px] px-6 py-3 transition-colors">Vote</button>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="pt-4">
-          <a href="#" class="block rounded-[14px] border border-dashed px-5 py-[15px] text-center" style="border-color:rgba(79,227,193,0.7)">
-            <span class="font-bold text-[16px] text-[#4FE3C1]">Suggest another team</span>
-          </a>
+        <!-- success (shown after a pick) -->
+        <div id="picker-done" class="hidden py-4 flex flex-col items-center text-center gap-3">
+          <div class="w-16 h-16 rounded-full bg-[#4FE3C1] flex items-center justify-center text-[#06231B] text-[32px] font-bold leading-none">✓</div>
+          <p class="text-white text-[22px] font-bold">Your pick is in!</p>
+          <p class="text-white/70 text-[15px] leading-6 max-w-[380px]">We've recorded <b class="text-[#4FE3C1]" id="pick-team">Argentina</b> as your champion pick — good luck! 🍀</p>
+          <button type="button" id="pick-reset" class="mt-1 text-[13px] text-white/50 underline hover:text-white/80">Change my pick</button>
         </div>
+
       </div>
 
       <p class="text-center text-[12px] leading-[18px] text-[#9AA3B8]">Tapping a team opens the entry form with your pick pre-selected.</p>
@@ -104,5 +128,47 @@
     </div>
 
   </div>
+
+  <script>
+    (function () {
+      var picker  = document.getElementById('picker');
+      var done    = document.getElementById('picker-done');
+      var team    = document.getElementById('pick-team');
+      var trigger = document.getElementById('suggest-trigger');
+      var form    = document.getElementById('suggest-form');
+      var input   = document.getElementById('suggest-input');
+      var vote    = document.getElementById('suggest-vote');
+
+      function submit(name) {
+        team.textContent = name;
+        picker.classList.add('hidden');
+        done.classList.remove('hidden');
+      }
+
+      // click a team → pick sent
+      document.querySelectorAll('.team-btn').forEach(function (b) {
+        b.addEventListener('click', function () { submit(b.getAttribute('data-team')); });
+      });
+
+      // suggest another team → reveal input
+      trigger.addEventListener('click', function () {
+        trigger.classList.add('hidden');
+        form.classList.remove('hidden');
+        input.focus();
+      });
+      function sendCustom() { submit(input.value.trim() || 'your team'); }
+      vote.addEventListener('click', sendCustom);
+      input.addEventListener('keydown', function (e) { if (e.key === 'Enter') sendCustom(); });
+
+      // reset (demo)
+      document.getElementById('pick-reset').addEventListener('click', function () {
+        done.classList.add('hidden');
+        picker.classList.remove('hidden');
+        form.classList.add('hidden');
+        trigger.classList.remove('hidden');
+        input.value = '';
+      });
+    })();
+  </script>
 </body>
 </html>
