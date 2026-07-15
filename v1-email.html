@@ -13,9 +13,6 @@
     .teko { font-family: "Teko", sans-serif; }
     .team-btn { transition: background-color .15s ease, border-color .15s ease; cursor: pointer; }
     .team-btn:hover { background-color:#1C2B54; border-color:#4FE3C1; }
-    .opt-trigger { transition: border-color .15s ease, background-color .15s ease; cursor: pointer; }
-    .opt-trigger:hover { border-color:#4FE3C1; background-color:rgba(79,227,193,0.08); }
-    #suggest-vote:hover { background-color:#38D8B3; }
   </style>
 </head>
 <body class="bg-[#EEECE7] flex justify-center py-9 px-3">
@@ -78,18 +75,6 @@
               <img src="assets/ar.png" class="w-[26px] h-5 rounded object-cover"><span class="font-bold text-[16px] text-white">Argentina</span>
             </button>
           </div>
-
-          <div class="pt-4">
-            <button type="button" id="suggest-trigger" class="opt-trigger block w-full rounded-[14px] border border-dashed px-5 py-[15px] text-center" style="border-color:rgba(79,227,193,0.7)">
-              <span class="font-bold text-[16px] text-[#4FE3C1]">Suggest another team</span>
-            </button>
-            <div id="suggest-form" class="hidden">
-              <div class="flex items-center gap-2 rounded-[14px] border border-dashed pl-3 pr-2 py-2" style="border-color:rgba(79,227,193,0.7)">
-                <input id="suggest-input" type="text" placeholder="Type the team you believe will win…" class="flex-1 min-w-0 bg-transparent outline-none text-white font-bold text-[16px] px-2 py-2 placeholder:text-[#8FA0C7] placeholder:font-normal">
-                <button type="button" id="suggest-vote" class="shrink-0 rounded-[10px] bg-[#4FE3C1] text-[#06231B] font-bold text-[14px] px-6 py-3 transition-colors">Vote</button>
-              </div>
-            </div>
-          </div>
         </div>
 
         <!-- success (shown after a pick) -->
@@ -125,13 +110,9 @@
 
   <script>
     (function () {
-      var picker  = document.getElementById('picker');
-      var done    = document.getElementById('picker-done');
-      var team    = document.getElementById('pick-team');
-      var trigger = document.getElementById('suggest-trigger');
-      var form    = document.getElementById('suggest-form');
-      var input   = document.getElementById('suggest-input');
-      var vote    = document.getElementById('suggest-vote');
+      var picker = document.getElementById('picker');
+      var done   = document.getElementById('picker-done');
+      var team   = document.getElementById('pick-team');
 
       function submit(name) {
         team.textContent = name;
@@ -144,23 +125,10 @@
         b.addEventListener('click', function () { submit(b.getAttribute('data-team')); });
       });
 
-      // suggest another team → reveal input
-      trigger.addEventListener('click', function () {
-        trigger.classList.add('hidden');
-        form.classList.remove('hidden');
-        input.focus();
-      });
-      function sendCustom() { submit(input.value.trim() || 'your team'); }
-      vote.addEventListener('click', sendCustom);
-      input.addEventListener('keydown', function (e) { if (e.key === 'Enter') sendCustom(); });
-
       // reset (demo)
       document.getElementById('pick-reset').addEventListener('click', function () {
         done.classList.add('hidden');
         picker.classList.remove('hidden');
-        form.classList.add('hidden');
-        trigger.classList.remove('hidden');
-        input.value = '';
       });
     })();
   </script>
